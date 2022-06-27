@@ -24,42 +24,29 @@ public class Game {
         _board.AddTileAt(symbol, x, y);
     }
 
-    public char Winner() {
+    public Symbol Winner() {
         //if the positions in first row are taken
-        if (!_board.TileAt(0, 0).isEmpty() &&
-                !_board.TileAt(0, 1).isEmpty() &&
-                !_board.TileAt(0, 2).isEmpty()) {
+        for (int row = 0; row < 3; row++) {
+            Symbol symbol = getWinnerSymbol(row);
+            if (symbol != null)
+                return symbol;
+        }
+
+        return new Symbol(' ');
+    }
+
+    private Symbol getWinnerSymbol(int x) {
+        if (!_board.TileAt(x, 0).isEmpty() &&
+                !_board.TileAt(x, 1).isEmpty() &&
+                !_board.TileAt(x, 2).isEmpty()) {
             //if first row is full with same symbol
-            if (_board.TileAt(0, 0).isEqual(
-                    _board.TileAt(0, 1)) &&
-                    _board.TileAt(0, 2).isEqual(_board.TileAt(0, 1))) {
-                return _board.TileAt(0, 0).symbol.value();
+            if (_board.TileAt(x, 0).isEqual(
+                    _board.TileAt(x, 1)) &&
+                    _board.TileAt(x, 2).isEqual(_board.TileAt(x, 1))) {
+                return _board.TileAt(x, 0).symbol;
             }
         }
-
-        //if the positions in first row are taken
-        if (!_board.TileAt(1, 0).isEmpty() &&
-                !_board.TileAt(1, 1).isEmpty() &&
-                !_board.TileAt(1, 2).isEmpty()) {
-            //if middle row is full with same symbol
-            if (_board.TileAt(1, 0).isEqual(_board.TileAt(1, 1)) &&
-                    _board.TileAt(1, 2).isEqual(_board.TileAt(1, 1))) {
-                return _board.TileAt(1, 0).symbol.value();
-            }
-        }
-
-        //if the positions in first row are taken
-        if (!_board.TileAt(2, 0).isEmpty() &&
-                !_board.TileAt(2, 1).isEmpty() &&
-                !_board.TileAt(2, 2).isEmpty()) {
-            //if middle row is full with same symbol
-            if (_board.TileAt(2, 0).isEqual(_board.TileAt(2, 1)) &&
-                    _board.TileAt(2, 2).isEqual(_board.TileAt(2, 1))) {
-                return _board.TileAt(2, 0).symbol.value();
-            }
-        }
-
-        return ' ';
+        return null;
     }
 }
 
