@@ -1,7 +1,6 @@
 
 public class Tile
 {
-    public int X;
-    public int Y;
+    Location location;
     public char Symbol;
 }
