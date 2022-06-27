@@ -14,6 +14,7 @@ public class Board
                 Tile tile = new Tile();
                 tile.location = new Location(i, j);
                 tile.Symbol = ' ';
+                tile.symbol = new Symbol(' ');
                 _plays.add(tile);
             }
         }
@@ -31,10 +32,7 @@ public class Board
 
     public void AddTileAt(char symbol, int x, int y)
     {
-        Tile newTile = new Tile();
-        newTile.location = new Location(x, y);
-        newTile.Symbol = symbol;
-
         TileAt(x,y).Symbol = symbol;
+        TileAt(x,y).symbol = new Symbol(symbol);
     }
 }

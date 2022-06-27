@@ -1,6 +1,14 @@
 
-public class Tile
-{
+public class Tile {
+
     Location location;
-    public char Symbol;
+    char Symbol;
+
+    Symbol symbol;
+
+
+
+    public boolean isEmpty() {
+        return this.symbol.value() != ' ';
+    }
 }
